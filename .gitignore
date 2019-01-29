@@ -1,2 +1,4 @@
-*.rbxl
-site
+include
+modules
+node_modules
+tsconfig.json

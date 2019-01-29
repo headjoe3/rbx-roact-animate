@@ -1,0 +1,27 @@
+{
+  "name": "rbx-roact-animate",
+  "version": "0.0.1",
+  "description": "Roblox-TS typings for AmaranthineCodices' RoactAnimate",
+  "main": "./lib/init.lua",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/headjoe3/rbx-roact-animate.git"
+  },
+  "author": "Robert Tulley (Roblox: DataBrain)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/headjoe3/rbx-roact-animate/issues"
+  },
+  "homepage": "https://github.com/headjoe3/rbx-roact-animate#readme",
+  "peerDependencies": {
+    "rbx-roact": "0.1.7",
+    "rbx-types": "^1.0.105"
+  },
+  "typings": "index.d.ts",
+  "files": [
+    "lib/*",
+    "*.d.ts"
+  ]
+}

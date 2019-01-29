@@ -1,10 +1,90 @@
 # roact-animate
-An animation library for [Roact](https://github.com/Roblox/Roact) modeled after React Native's [Animated](https://facebook.github.io/react-native/docs/animations.html) library. This is currently a work in progress; the API may change at random!
+Roblox-TS typings for AmaranthineCodices' RoactAnimate [RoactAnimate](https://github.com/AmaranthineCodices/roact-animate)
 
 ## Installation
-There are two ways to install `roact-animate`. The recommended way is to download the installer from the [latest release](https://github.com/AmaranthineCodices/roact-material/releases/latest) and run it from Studio's Run Script option (in the Test tab). Alternatively, you can download the repository's `src` directory manually and get it into Roblox Studio. You can use [Rojo](https://github.com/LPGhatguy/rojo) or a similar plugin for this.
+`npm install rbx-roact-animate`
 
-`roact-animate` must be installed in the same location as Roact.
+## Example (tsx)
+```jsx
+import { SetBoolFactor } from "src/Shared/Classes/Core/FactoredBool";
+import Roact = require("rbx-roact");
+import RoactAnimate = require("rbx-roact-animate");
 
-## Usage
-Documentation coming soon<sup>tm</sup>. Check the `examples` folder for some examples of how to use this.
+interface Props {
+    // Marker that this component can have children
+    [Roact.Children]?: Roact.Element[]
+}
+
+interface State {
+    Size: RoactAnimate.Value<UDim2>
+    Transparency: RoactAnimate.Value<number>
+    Color: RoactAnimate.Value<Color3>
+}
+
+export class TestComponent extends Roact.Component<Props, State> {
+    constructor(props: Props) {
+        super(props)
+    }
+    static getDerivedStateFromProps(props: Props): Partial<State> {
+        return {
+            Transparency: new RoactAnimate.Value(1),
+            Size: new RoactAnimate.Value(new UDim2(0, 100, 0, 100)),
+            Color: new RoactAnimate.Value(new Color3(1, 1, 1)),
+        }
+    }
+    didMount() {
+        spawn(() => {
+            while (true) {
+                wait(3)
+    
+                RoactAnimate.Sequence([
+                    RoactAnimate.Parallel([
+                        RoactAnimate.Prepare(this.state.Transparency, 1),
+                        RoactAnimate.Prepare(this.state.Size, new UDim2(0, 100, 0, 100)),
+                        RoactAnimate.Prepare(this.state.Color, new Color3(1, 1, 1)),
+                    ]),
+                    RoactAnimate.Animate(
+                        this.state.Transparency,
+                        new TweenInfo(1),
+                        0),
+                    RoactAnimate.Parallel([
+                        RoactAnimate.Animate(this.state.Size,
+                            new TweenInfo(0.5),
+                            new UDim2(0, 200, 0, 50)),
+                        RoactAnimate.Animate(this.state.Color,
+                            new TweenInfo(0.5),
+                            new Color3(0.5, 0.1, 1)),
+                    ])
+                ]).Start()
+            }
+        })
+    }
+    render() {
+        return (
+            <RoactAnimate.Frame
+                BackgroundTransparency = {this.state.Transparency}
+                Position = {new UDim2(0.5, 0, 0.5, 0)}
+                Size = {this.state.Size}
+                BackgroundColor3 = {this.state.Color}
+                // Pass children through
+                {...{[Roact.Children]: this.props[Roact.Children]}}
+            />
+        )
+    }
+    
+}
+
+const testTree = (
+    <screengui>
+        <TestComponent>
+        </TestComponent>
+    </screengui>
+)
+
+export function mountTest() {
+    Roact.mount(testTree, game.Players.LocalPlayer.WaitForChild("PlayerGui"))
+}
+
+// Call mountTest() here or in another .ts file
+```
+![Example](https://i.imgur.com/jQisHae.gif)
