@@ -6,7 +6,6 @@ Roblox-TS typings for AmaranthineCodices' [RoactAnimate](https://github.com/Amar
 
 ## Example (tsx)
 ```jsx
-import { SetBoolFactor } from "src/Shared/Classes/Core/FactoredBool";
 import Roact = require("rbx-roact");
 import RoactAnimate = require("rbx-roact-animate");
 
