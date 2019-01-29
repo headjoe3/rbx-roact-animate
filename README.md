@@ -1,5 +1,5 @@
 # roact-animate
-Roblox-TS typings for AmaranthineCodices' RoactAnimate [RoactAnimate](https://github.com/AmaranthineCodices/roact-animate)
+Roblox-TS typings for AmaranthineCodices' [RoactAnimate](https://github.com/AmaranthineCodices/roact-animate)
 
 ## Installation
 `npm install rbx-roact-animate`
