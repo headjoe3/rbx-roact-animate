@@ -23,13 +23,12 @@ interface State {
 export class TestComponent extends Roact.Component<Props, State> {
     constructor(props: Props) {
         super(props)
-    }
-    static getDerivedStateFromProps(props: Props): Partial<State> {
-        return {
+        
+        this.setState({
             Transparency: new RoactAnimate.Value(1),
             Size: new RoactAnimate.Value(new UDim2(0, 100, 0, 100)),
             Color: new RoactAnimate.Value(new Color3(1, 1, 1)),
-        }
+        })
     }
     didMount() {
         spawn(() => {
