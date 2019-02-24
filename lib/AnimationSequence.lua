@@ -33,19 +33,17 @@ function AnimationSequence:Start()
 			local count = #self._animations
 
 			for _, animation in ipairs(self._animations) do
-				local overridden = false
+				local allCompleted = true
 				local connection
 				connection = animation.AnimationFinished:Connect(function(wasCompleted)
 					connection:Disconnect()
 					count = count - 1
 
-					if not wasCompleted then
-						overridden = true
-					end
+					allCompleted = allCompleted and wasCompleted
 
 					-- If all of the animations are done, fire the AnimationFinished signal.
 					if count <= 0 then
-						self.AnimationFinished:Fire(not overridden)
+						self.AnimationFinished:Fire(allCompleted)
 					end
 				end)
 
