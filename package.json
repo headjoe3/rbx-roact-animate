@@ -1,6 +1,6 @@
 {
   "name": "rbx-roact-animate",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Roblox-TS typings for AmaranthineCodices' RoactAnimate",
   "main": "./lib/init.lua",
   "scripts": {
