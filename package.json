@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/headjoe3/rbx-roact-animate#readme",
   "peerDependencies": {
-    "rbx-roact": "0.1.7",
+    "rbx-roact": "^0.1.7",
     "rbx-types": "^1.0.105"
   },
   "typings": "index.d.ts",
